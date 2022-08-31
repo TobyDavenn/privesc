@@ -14,6 +14,7 @@ serach on GTFO bins for any capabilities with the software names discovered <br>
 <br>
 <h1> Cron Jobs </h1><br>
 Any user can read the file keeping system-wide cron jobs under /etc/crontab - cat /etc/crontab <br>
+Edit any cron jobs that have permission and replace with a reverse shell using nano filename then edit
 <br>
 <h1> Path </h1><br>
 find / -perm -u=s -exec ls -l {} \; 2>/dev/null <br>
