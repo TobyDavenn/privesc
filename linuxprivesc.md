@@ -19,3 +19,14 @@ Edit any cron jobs that have permission and replace with a reverse shell using n
 <h1> Path </h1><br>
 find / -perm -u=s -exec ls -l {} \; 2>/dev/null <br>
 Look for non linux binaries <br>
+
+
+<h1> MSFCONSOLE </h1>
+if you can login via ssh, use ssh_login on msfconsole then upgrade session to metepreter shell
+type sessions -u 1
+search sugg
+use 3
+session 2
+msfconsole exploit suggester if you background a session and upgrade to a metereter shell sessions -u 1 
+
+
