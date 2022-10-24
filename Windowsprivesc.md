@@ -69,6 +69,7 @@ C:\Windows\System32\fxstmp
 C:\Windows\SysWOW64\fxstmp
 
 <h2>Autoruns</h2>
+run ---- either of the below
 wmic startup get caption,command
 reg query HKLM\Software\Microsoft\Windows\CurrentVersion\R
 reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
