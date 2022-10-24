@@ -2,7 +2,7 @@
 
 <h2>pre requists </h2>
 
-If on a box check perms and check other users
+<h3>If on a box check perms and check other users</h3>
 whoami /priv
 whoami /groups
 net user
@@ -10,22 +10,22 @@ whoami /all
 Get-LocalUser | ft Name,Enabled,LastLogon
 Get-ChildItem C:\Users -Force | select Name
 
-List shares
+<h3>List shares</h3>
 net share
 powershell Find-DomainShare -ComputerDomain domain.local
 
-Find passwords
+<h3>Find passwords</h3>
 cd C:\ & findstr /SI /M "password" *.xml *.ini *.txt
 findstr /si password *.xml *.ini *.txt *.config
 findstr /spin "password" *.*
 
-Find certain files
+<h3>Find certain files</h3>
 dir /S /B *pass*.txt == *pass*.xml == *pass*.ini == *cred* == *vnc* == *.config*
 where /R C:\ user.txt
 where /R C:\ *.ini
 
 
-Search the registry for key names and passwords
+<h3>Search the registry for key names and passwords</h3>
 REG QUERY HKLM /F "password" /t REG_SZ /S /K
 REG QUERY HKCU /F "password" /t REG_SZ /S /K
 
@@ -39,7 +39,7 @@ reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password
 reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s
 
-Passwords in unattend.xml
+<h3>Passwords in unattend.xml</h3>
 Location of the unattend.xml files.
 
 C:\unattend.xml
