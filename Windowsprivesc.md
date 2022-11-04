@@ -122,6 +122,9 @@ bypass EULA -- .\accesschk.exe /accepteula -quvw userofscheduledtaskcheckingperm
 e.g --- .\accesschk.exe /accepteula -quvw stef C:\Users\Administrator\Desktop\Backup.ps1
 create msfvenom shell and transfer over to victim machine
 echo path_to_shell >> path_to_scheduled_script
-setup listener
+setup listener <br>
+<br>
+<h2>Further processes to check </h2> <br>
+https://www.roguesecurity.in/2018/12/02/a-guide-for-windows-penetration-testing/
 
 
