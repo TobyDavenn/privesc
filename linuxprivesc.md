@@ -3,8 +3,65 @@
 
 
 
+<h2> World Writeable files </h2><br>
+Check for files owned and executed as root writeable by anyone <br>
+Find world writable folders:<br>
+$ find / -perm -0002 -type d 2>/dev/null<br>
+<br>
+Find writeable for current user<br>
+$ find / -path /proc -prune -o -writable 2>/dev/null<br>
+<br>
 
-
+Find world writable files- exclude proc:<br>
+$ find / -path /proc -prune -o -perm -0002 -type f 2>/dev/null<br>
+<br>
+Hidden or missed files in web directories:<br>
+$ ls -alhR /var/www/
+$ ls -alhR /var/www/html/
+$ ls -alhR /srv/www/htdocs/
+$ ls -alhR /usr/local/www/apache22/data/
+$ ls -alhR /opt/lampp/htdocs/<br>
+<br>
+Web logs:<br>
+$ cat /etc/httpd/logs/access_log
+$ cat /etc/httpd/logs/access.log
+$ cat /etc/httpd/logs/error_log
+$ cat /etc/httpd/logs/error.log
+$ cat /var/log/apache2/access_log
+$ cat /var/log/apache2/access.log
+$ cat /var/log/apache2/error_log
+$ cat /var/log/apache2/error.log
+$ cat /var/log/apache/access_log
+$ cat /var/log/apache/access.log
+$ cat /var/log/auth.log
+$ cat /var/log/chttp.log
+$ cat /var/log/cups/error_log
+$ cat /var/log/dpkg.log
+$ cat /var/log/faillog
+$ cat /var/log/httpd/access_log
+$ cat /var/log/httpd/access.log
+$ cat /var/log/httpd/error_log
+$ cat /var/log/httpd/error.log
+$ cat /var/log/lastlog
+$ cat /var/log/lighttpd/access.log
+$ cat /var/log/lighttpd/error.log
+$ cat /var/log/lighttpd/lighttpd.access.log
+$ cat /var/log/lighttpd/lighttpd.error.log
+$ cat /var/log/messages
+$ cat /var/log/secure
+$ cat /var/log/syslog
+$ cat /var/log/wtmp
+$ cat /var/log/xferlog
+$ cat /var/log/yum.log
+$ cat /var/run/utmp
+$ cat /var/webmin/miniserv.log
+$ cat /var/www/logs/access_log
+$ cat /var/www/logs/access.log
+$ ls -alh /var/lib/dhcp3/
+$ ls -alh /var/log/postgresql/
+$ ls -alh /var/log/proftpd/
+$ ls -alh /var/log/samba/<br>
+<br>
 ![image](https://user-images.githubusercontent.com/35967437/200787298-1e975059-fbe5-4d8a-8313-674bb4e4e67b.png)
 
 <h1>kernel exploits</h1>
