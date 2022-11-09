@@ -21,5 +21,6 @@ Run find / -perm -u=s -exec ls -l {} \; 2>/dev/null and look for non normal linu
 run strings on the full path - strings /usr/bin/menu and see what is happening, are there system commands being run? <br>
 e.g. if curl is being run we can create a vulnerable version of curl. <br>
 Create malicious version of curl in /tmp directory and add /tmp to path $ export - export PATH=/tmp:$PATH <br>
-Execute the original binary e.g /usr/bin/menu
+Execute the original binary e.g /usr/bin/menu <br>
+This happens because path checks left to right every directory specified for the file, new added path directory is first on left
 
