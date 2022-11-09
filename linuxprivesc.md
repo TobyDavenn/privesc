@@ -71,7 +71,7 @@ if established session with MSFCONSOLE while sessions is established type run po
 <h2>Further Paths </h2> <br>
 if you find say a cron job or script referencing a system command e.g. cat, run env | grep PATH and take a look at the path. Then run which cat and see where this is being called from, e.g. /bin/cat. <br>
 Run a command - touch /bin and see if you can read/write the directory, if so /mv /bin/cat /tmp <br>
-Create new file named cat and add reverse shell <br>
+Create new file named cat chmod +x cat and add reverse shell <br>
 This will now be run everytime a cronjob or file references the system command. <br>
 <br>
 Run find / -perm -u=s -exec ls -l {} \; 2>/dev/null and look for non normal linux binary, e.g. /usr/bin/menu. Have a look if this runs as root. <br>
