@@ -8,6 +8,11 @@ Check for files owned and executed as root writeable by anyone <br>
 Find world writable folders:<br>
 $ find / -perm -0002 -type d 2>/dev/null<br>
 <br>
+see if /etc/passwd is writeable --- ls -l /etc/passwd <br>
+if it is, generate a new password with openssl passwd newpasshere <br>
+copy and open etc/passwd paste into root user between first and 2nd :
+![image](https://user-images.githubusercontent.com/35967437/202036336-b61520e1-717d-4d25-a6a3-8f53819ca2f1.png) <br>
+<br>
 Find writeable for current user<br>
 $ find / -path /proc -prune -o -writable 2>/dev/null<br>
 <br>
