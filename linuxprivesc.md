@@ -220,7 +220,9 @@ Then to compile run -- gcc -o service /path/of/file/service.c<br>
 <br>
 
 <h1>kernel exploits</h1>
-if established session with MSFCONSOLE while sessions is established type run post/multi/recon/local_exploit_suggester identify vulnerability and type use exploitname set SESSION [meterpreter SESSION number] set LPORT run <br>
+if established session with MSFCONSOLE while sessions is established type use post/multi/recon/local_exploit_suggester 
+now type set SESSION 1
+identify vulnerability and type use exploitname set SESSION [meterpreter SESSION number] set LPORT run <br>
 <br>
 
 <h2>Further Paths </h2> <br>
