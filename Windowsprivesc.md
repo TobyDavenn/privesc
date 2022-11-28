@@ -25,6 +25,7 @@ net share
 powershell Find-DomainShare -ComputerDomain domain.local
 
 <h3>Find passwords</h3>
+cmdkey /list (need to the use windows tool - runas.exe google the syntax to see how to run this.<br>
 cd C:\ & findstr /SI /M "password" *.xml *.ini *.txt
 findstr /si password *.xml *.ini *.txt *.config
 findstr /spin "password" *.*
@@ -110,7 +111,9 @@ you change change whats in the generated exe  <br>
 
 
 <h2>search configuration files for passwords</h2>
-
+<br>
+<h2> RunAs </h2> <br>
+If you have a meterpreter shell, try the command getsystem <br>
 
 
 <h2>kernel exploits</h2>
