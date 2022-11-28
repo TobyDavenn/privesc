@@ -1,4 +1,14 @@
 <h1>Windows Priv esc learning</h1>
+First run whoami /priv to see account privilages or gpresult /v <br>
+Check privilges against exploits listed here -- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#eop---impersonation-privileges <br>
+
+<h2> JuicyPotato </h2> <br>
+If a user has SEImpersonate privilage or SeAssignPrimaryToken can try priv esc with juicy potato (usually service accounts have this set). <br>
+Can use Windowsexploitsuggestor.py, copy systeminfo output from a machine (type systeminfo on cmd) then paste into python windows exploit suggestor (doesnt work on my machine). <br>
+<br>
+To get exploit onto machine, open a web delivery meterpreter shell via MSFCONSOLE -- type exploit /multi/script/web_delivery. Change payload to meterpreter reverse_tcp. Set lhost and all that lovely stuff and change exploit target to powershell (if on windows). This will now give reverse shell output to run on the comprimised machine. Paste onto comprimised machine. <br>
+Back on msfconsole type -- sessions 1 <br>
+Could now type -- run /post/multi/recon/local_exploit_suggestor, use exploits suggested. 
 
 <h2>pre requists </h2>
 
@@ -126,5 +136,6 @@ setup listener <br>
 <br>
 <h2>Further processes to check </h2> <br>
 https://www.roguesecurity.in/2018/12/02/a-guide-for-windows-penetration-testing/
-
-
+<br>
+<h2>tokens</h2>
+If you have an account that can login via ssh or psexec, or can get a meterpreter shell, if a DA has had a session on the machine, type when in  meterpreter shell list_tokens, see if admin token is listed. If so type impersonate_token domain\\username, now run "shell" to drop into shell. <br> If account has domain privilages run mimikatz to dump, look in AD section.
