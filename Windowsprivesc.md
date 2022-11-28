@@ -138,4 +138,4 @@ setup listener <br>
 https://www.roguesecurity.in/2018/12/02/a-guide-for-windows-penetration-testing/
 <br>
 <h2>tokens</h2>
-If you have an account that can login via ssh or psexec, or can get a meterpreter shell, if a DA has had a session on the machine, type when in  meterpreter shell list_tokens, see if admin token is listed. If so type impersonate_token domain\\username, now run "shell" to drop into shell. <br> If account has domain privilages run mimikatz to dump, look in AD section.
+If you have an account that can login via ssh or psexec, or can get a meterpreter shell (use payload meterpreter), if a DA has had a session on the machine, type when in  meterpreter shell list_tokens, see if admin token is listed. If so type impersonate_token domain\\username, now run "shell" to drop into shell. <br> If account has domain privilages run mimikatz to dump, look in AD section.
