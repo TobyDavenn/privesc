@@ -128,6 +128,13 @@ place in C:\Program Files\unquoted path (this ovbiously changes path for what yo
 call service   -- sc start servicename <br>
 you change change whats in the generated exe  <br>
 <br>
+Another way, if you find the unquoted service that runs as localsystem C:\test\Program Files\New exe\service.exe <br>
+Looking to see if you have read write to any directories list above, say access to write to program Files <br>
+create reverse shell exe and call it New.exe, now the service is going to look C:\test\Program Files\New.exe <br>
+<create listener <br>
+restart the service, if you have no permissions and its set to autorun, reboot the system <br>
+<br>
+
 <h2> service path binaries </h2> <br>
 Check unquoted service paths with powerup (download to machine run powershell and do . ./PowerUp.ps1 then run Get-ServiceUnquoted <br>
 Query highlighted services with accesschk -- C:\PrivEsc\accesschk.exe /accepteula -uwcqv user daclsvc (change path to where download is and change "daclsv" to service name) <br>
