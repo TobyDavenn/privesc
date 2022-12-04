@@ -203,3 +203,20 @@ run Accesschk against the service path exe -- C:\Users\path\to\accesschk\accessc
 Look if there are any permissions such as RW everyone FILE_ALL_ACCESS <br>
 Create msfvenom reverse shell and overwrite exe file in service location identified above. <br>
 start the service -- sc start servicename <br>
+<br>
+
+<h2> Start Up Applications </h2> <br>
+use a tool called icacls.exe (assess ACLs) <br>
+use icacls on the program startup directory --- icacls.exe "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup" <br>
+Have a look if the username or BUILTIN\Users has full access (F) or Write access (W) to the directory <br>
+Generate a malicious file with msfvenom and set the listener. <br>
+add the payload to the directory and reboot the machine <br>
+<br>
+
+<h2> DLL Hijacking </h2><br>
+DLL are shared libaries, containing classes, functions and resources, often run with exes <br>
+When windows starts a service or application it looks for dll's, if this doesnt exist then can be exploited. <br>
+
+
+
+
