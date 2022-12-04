@@ -1,3 +1,10 @@
+<h2>useful notes on scripts </h2>
+To run a powershell script, cmd to the directory the script is in and type . .\nameofscript.ps1 (may also need to import modules google the script)<br>
+useful priv esc check script for windows is PowerUp.ps1 use the Invoke-Allchecks  <br>
+aka -- . .\PowerUp.ps1 <br>
+Invoke-AllChecks <br>
+tool Accesschk should be downloaded and used to see permissions on services etc <br>
+<br>
 <h1>Windows Priv esc learning</h1>
 First run whoami /priv to see account privilages or gpresult /v <br>
 Check privilges against exploits listed here -- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md#eop---impersonation-privileges <br>
@@ -176,3 +183,16 @@ https://www.roguesecurity.in/2018/12/02/a-guide-for-windows-penetration-testing/
 <br>
 <h2>tokens</h2>
 If you have an account that can login via ssh or psexec, or can get a meterpreter shell (use payload meterpreter), if a DA has had a session on the machine, type when in  meterpreter shell list_tokens, see if admin token is listed. If so type impersonate_token domain\\username, now run "shell" to drop into shell. <br> If account has domain privilages run mimikatz to dump, look in AD section.
+<br>
+<br>
+<h2> RegSVC Esculation </h2><br>
+google this <br>
+<br>
+
+<h2> EXE files as a service </h2><br>
+Download Accesschk <br>
+On a service that has an exe that executes (can find this with powerup Invoke-AllChecks and check if this runs as LocalSystem) <br>
+run Accesschk against the service path exe -- C:\Users\path\to\accesschk\accesschk64.exe -wvu "C:\path\to\service\exe" <br>
+Look if there are any permissions such as RW everyone FILE_ALL_ACCESS <br>
+Create msfvenom reverse shell and overwrite exe file in service location identified above. <br>
+start the service -- sc start servicename <br>
