@@ -1,7 +1,10 @@
 
 
 
-
+<h2> Check local ports </h2> <br>
+ss -lntu
+<br>
+If you see mongo running (27017 or 27020) see if can connect to mongo anon --- type on cli -- mongo <br>
 
 <h2> World Writeable files </h2><br>
 Check for files owned and executed as root writeable by anyone <br>
