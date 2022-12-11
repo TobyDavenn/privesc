@@ -281,7 +281,7 @@ add chmod +x file.sh <br>
 wait for cronjob to run and run /tmp/rootbash -p <br>
 <br>
 <h2>editing service files </h2><br>
-If you identify service files that are writeable by user and executed as root, edit in vim or nano and change path of file to /usr/bin/chmod +s /bin/bash <br>
+If you identify service files that are writeable by user (either with linpeas or ls -l lib/systemd/system> |grep null) and executed as root, edit in vim or nano and change path of file to /usr/bin/chmod +s /bin/bash <br>
 save </br>
 must have rights to reboot system -- sudo -l to check </br>
 reboot and re-login via ssh<br>
