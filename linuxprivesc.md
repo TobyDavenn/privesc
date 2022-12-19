@@ -5,6 +5,11 @@
 ss -lntu
 <br>
 If you see mongo running (27017 or 27020) see if can connect to mongo anon --- type on cli -- mongo <br>
+<br>
+<h2> share mount </h2>
+<br>
+showmount -e IP <br>
+sudo mount -t nfs IP:/path/of/mount /mnt
 
 <h2> World Writeable files </h2><br>
 Check for files owned and executed as root writeable by anyone <br>
