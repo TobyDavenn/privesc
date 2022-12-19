@@ -39,6 +39,10 @@ Find writeable for current user<br>
 $ find / -path /proc -prune -o -writable 2>/dev/null<br>
 <br>
 
+<h2> Find file </h2><br>
+find / -name NAMEHERE 2>/dev/null <br>
+<br>
+
 Find world writable files- exclude proc:<br>
 $ find / -path /proc -prune -o -perm -0002 -type f 2>/dev/null<br>
 <br>
