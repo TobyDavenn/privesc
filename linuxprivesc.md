@@ -6,10 +6,24 @@ ss -lntu
 <br>
 If you see mongo running (27017 or 27020) see if can connect to mongo anon --- type on cli -- mongo <br>
 <br>
-<h2> share mount </h2>
+<h2> Mounting files </h2>
+If you have smb access to shares you could try mount file share -- sudo mount -t cifs //10.10.10.134/backups /mnt -o user=,password= <br>
+Then to list all files in the mount cd to /mnt and type -- find /mnt/ -type f <br>
+to unmount -- umount /mnt <br>
+<br>
+Could also do the below for NFS ports<br>
+showmount -e IP <br>
+sudo mount -t nfs IP:/path/of/mount /mnt <br>
+find /mnt/ -type f <br>
+<br>
+If you find vhd files in a mount, can use <br>
+guestmount --add /path/to/vhd.vhd --inspector --ro /mnt2/   <br>
+Try secretsdump.py on the SAM -- secretsdump.py -sam SAM -security SECURITY -system SYSTEM LOCAL
 <br>
 showmount -e IP <br>
 sudo mount -t nfs IP:/path/of/mount /mnt
+<br>
+<br>
 
 <h2> World Writeable files </h2><br>
 Check for files owned and executed as root writeable by anyone <br>
