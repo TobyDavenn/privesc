@@ -224,5 +224,16 @@ DLL are shared libaries, containing classes, functions and resources, often run 
 When windows starts a service or application it looks for dll's, if this doesnt exist then can be exploited. <br>
 
 
+  <h2> Proxying </h2> <br>
+  If you have a MSFCONSOLE shell on a machine (generate payload via msfvenom if needed and run and set multi/handler on msfconsole <br>
+  background session -- background <br>
+  use post/multi/manage/autoroute <br>
+  set SESSION 1 (change if more than 1 session) <br>
+  set SUBNET 10.200.3.0 (change to submet needed) <br>
+  exploit <br>
+  <br>
+  Now setup proxy <br>
+ use auxiliary/server/socks_proxy <br>
+  
 
 
