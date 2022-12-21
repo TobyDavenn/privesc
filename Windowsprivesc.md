@@ -1,7 +1,7 @@
 <h2> Seatbelt </h2><br>
 Priv esc tool called seatbelt (in my linux downloads) <br>
 get onto target and run, will show memory creds -- look for outpit CredEnum and WindowsVault, if an account shows here and you can use RDP on the machine run <br>
-runas /savecred /user:<user> /profile "cmd.exe"
+runas /savecred /user:<user> /profile "cmd.exe"   -- can do this manual way of cmdkey /list <br>
   <br>
 
 <h2>useful notes on scripts </h2>
