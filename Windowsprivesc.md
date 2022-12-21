@@ -234,6 +234,9 @@ When windows starts a service or application it looks for dll's, if this doesnt 
   <br>
   Now setup proxy <br>
  use auxiliary/server/socks_proxy <br>
+  type -- run <br>
+  edit proxychains conf --- sudo nano /etc/proxychains.conf and add whatever version of socks is running via MSFCONSOLE (most likely 5 can check with options) <br>
+  socks5 <br>
   
 
 
