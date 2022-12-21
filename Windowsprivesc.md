@@ -1,3 +1,9 @@
+<h2> Seatbelt </h2><br>
+Priv esc tool called seatbelt (in my linux downloads) <br>
+get onto target and run, will show memory creds -- look for outpit CredEnum and WindowsVault, if an account shows here and you can use RDP on the machine run <br>
+runas /savecred /user:<user> /profile "cmd.exe"
+  <br>
+
 <h2>useful notes on scripts </h2>
 To run a powershell script, cmd to the directory the script is in and type . .\nameofscript.ps1 (may also need to import modules google the script)<br>
 useful priv esc check script for windows is PowerUp.ps1 use the Invoke-Allchecks  <br>
