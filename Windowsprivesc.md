@@ -231,6 +231,16 @@ When windows starts a service or application it looks for dll's, if this doesnt 
   set SESSION 1 (change if more than 1 session) <br>
   set SUBNET 10.200.3.0 (change to submet needed) <br>
   exploit <br>
+  msfconsole<br>
+pivoting, check ifconfig when you have a shell on the machine if you have a meterpreter shell, are there multiple nics?<br>
+if yes, use autoroute<br>
+background session -- background<br>
+use post/multi/manage/autoroute<br>
+set SESSION 1 (change if more than 1 session)<br>
+set SUBNET 10.200.3.0 (change to submet needed)<br>
+exploit<br>
+now you can use further auxiliary commands against the machine pivoting towards<br>
+has nmap command which can be used with script comnmand --script(useful for pivoting)<br>
   <br>
   Now setup proxy <br>
  use auxiliary/server/socks_proxy <br>
