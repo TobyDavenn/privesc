@@ -19,10 +19,13 @@ now you can use further auxiliary commands against the machine pivoting towards<
 has nmap command which can be used with script comnmand --script(useful for pivoting)<br>
   background <br>
   for portscan - use auxiliary/scanner/portscan/tcp <br>
-  set SESSIONS NUMBERHERE <br>
-  options and set everything <br>
+  set options and set everything <br>
   run <br>
-  nmap - module is nabmed db_nmap -sV -p 80,22,110,25 192.168.94.134 <br>
+  Identify ports of interest, now need to configure port forward. <br>
+  access the session -- sessions -i NUMBER <br>
+  ensure meterpreter shell and type -- portfwd add -l (PORT TO FORWARD, e.g. 555) -p (PORT ATTACKING) -r victimIP <br>
+  background session <br>
+  Now perform nmap -sV -sC scan on ported for e.g. -p 555 localhost still in msfconsole console
   
   
   <h2> Proxychains </h2>
