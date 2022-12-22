@@ -26,6 +26,9 @@ has nmap command which can be used with script comnmand --script(useful for pivo
   ensure meterpreter shell and type -- portfwd add -l (PORT TO FORWARD, e.g. 555) -p (PORT ATTACKING) -r victimIP <br>
   background session <br>
   Now perform nmap -sV -sC scan on ported for e.g. -p 555 localhost still in msfconsole console
+  Once found an exploit for version type -- search SERVICE and use whatever exploit <br>
+  set IP to actual machines ip 
+  exploit 
   
   
   <h2> Proxychains </h2>
