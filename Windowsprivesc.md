@@ -241,6 +241,13 @@ set SUBNET 10.200.3.0 (change to submet needed)<br>
 exploit<br>
 now you can use further auxiliary commands against the machine pivoting towards<br>
 has nmap command which can be used with script comnmand --script(useful for pivoting)<br>
+  background <br>
+  for portscan - use auxiliary/scanner/portscan/tcp <br>
+  set SESSIONS NUMBERHERE <br>
+  options and set everything <br>
+  run <br>
+  nmap - module is nabmed db_nmap -sV -p 80,22,110,25 192.168.94.134 <br>
+  
   <br>
   Now setup proxy <br>
  use auxiliary/server/socks_proxy <br>
