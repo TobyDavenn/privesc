@@ -41,9 +41,9 @@ has nmap command which can be used with script comnmand --script(useful for pivo
   exploit <br>
   Now setup proxy <br>
  use auxiliary/server/socks_proxy <br>
- set VERSION 4a <br>
+ set VERSION 5 <br>
   type -- run <br>
- should not need to edit conf as working on my machine (/etc/proxychains.conf) <br>
+ edit proxychains to socks5 and same port as metasploit using localhost 127.0.0.1 (/etc/proxychains.conf) <br>
  type --- proxychains nmap -T4 IP/CIDR and look for "OK" <br>
  every command is the same just add proxychains before
   
