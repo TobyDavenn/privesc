@@ -222,8 +222,14 @@ add the payload to the directory and reboot the machine <br>
 <h2> DLL Hijacking </h2><br>
 DLL are shared libaries, containing classes, functions and resources, often run with exes <br>
 When windows starts a service or application it looks for dll's, if this doesnt exist then can be exploited. <br>
-
-
+<br>
+<br>
+  <h2> Migrating to services to dump LSSAS </h2>
+  <br>
+  When on a meterpreter session with MSFCONSOLE, if you gain priv esculation say through local exploit suggestor or you come into system through an exploit, you can dump LSSAS through migrating to a process. <br>
+  First identify what architecture system you are on (x64 or 86) and then run ps to list processes and iodentify processes of the same archtecture that run as system.<br>
+  Migrate to the process with migrate -N PROCESSNAME and type getuid to see the new username <br>
+  Load mimikatz up via session with "load kiwi"
 
 
 
