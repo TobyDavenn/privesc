@@ -49,7 +49,7 @@ has nmap command which can be used with script comnmand --script(useful for pivo
   
   
 <h2> SSH Tunneling </h2> <br>
-If you manage to get into a box via SSH or have comprimised a box and are able to ssh to the box, you can check what local ports are running and then use SSH tunneling to access these from your attack machine <br>
+If you manage to get into a box via SSH or have comprimised a box and are able to ssh to the box <b>(if you have a shell as a user you can generate a new public key on my own kali machine -- ssh-keygen give it a name and a passphrase, then add this to the users ssh key file echo "your-ssh-public-key-contents" >> /home/apaar/.ssh/authorized_keys),</b> you can check what local ports are running and then use SSH tunneling to access these from your attack machine <br>
 when on the comprimised host (if linux) type -- ss -tulpn (take a look at ports running and the port number) <br>
 if port 10000 is running and of interest youd type on your local machine ssh -L 10000:localhost:10000 <username>@<ip>  (username of victim machine and ip) <br>
  then browse to port by browser -- localhost:10000 <br>
