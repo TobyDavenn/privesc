@@ -1,5 +1,7 @@
 
-
+<h2>user info on shell </h2><br>
+If you ever enter a shell as www-data always check /var/www/html and files for config/db passwords </br>
+<br>
 
 <h2> Check local ports </h2> <br>
 ss -lntu
